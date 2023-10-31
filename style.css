@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #222;
+  color: whitesmoke;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  gap: .5em;
+
+  & > * { 
+    flex: 2;
+    border: 1px solid;
+    border-radius: 1em;
+    padding: 1em;
+  }
+
+  & > :first-child {
+    flex: 3;
+  }
+
+  & > :not(:first-child) {
+    min-height: 40em;
+    align-self: start;
+  }
+}
+

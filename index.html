@@ -1,6 +1,23 @@
-<doctype html>
+<!DOCTYPE html>
 <html>
-  <head></head>
-  <body>Fff</body>
+  <head>
+    <title>Draw some shapes!</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="./shape-canvas.js"></script>
+  </head>
+  <body>
+    <h1>Draw some shapes!</h1>
+    <main>
+      <shape-canvas>
+        <shape-circle radius="50" x="112" y="70"></shape-circle>
+        <shape-circle radius="145" x="212" y="170"></shape-circle>
+        <shape-circle radius="50" x="112" y="35"></shape-circle>
+      </shape-canvas>
+      <tabs-pane>
+        <details><summary>Tools</summary></details>
+        <details><summary>History</summary></details>
+      </tabs-pane>
+    </main>
+  </body>
 </html>
 
