@@ -12,8 +12,8 @@ class TheCanvas extends HTMLElement {
       <style>
         :host {
           display: flex;
+          cursor: crosshair;
         }
-        xx:host > * { background: pink; }
       </style>
       <canvas></canvas>
     `
@@ -25,6 +25,8 @@ class TheCanvas extends HTMLElement {
     canvas.height = canvas.clientHeight
     const ctx = canvas.getContext('2d')
     ctx.fillStyle = this.computedStyleMap().get('color')
+    ctx.strokeStyle = this.computedStyleMap().get('color')
+    ctx.lineWidth = 5
   
     for (const shape of this.querySelectorAll('shape-circle')) {
       const [x, y, radius] = [
@@ -32,9 +34,11 @@ class TheCanvas extends HTMLElement {
         shape.getAttribute('y'),
         shape.getAttribute('radius')
       ]
-      ctx.moveTo(x, y)
-      ctx.arc(x, y, radius, 0, 360)
-      ctx.fill()
+
+      ctx.beginPath()
+      ctx.arc(x, y, radius, 0, 2 * Math.PI, true)
+      ctx.closePath()
+      ctx.stroke()
     }
   }
 
