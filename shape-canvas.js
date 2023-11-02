@@ -1,10 +1,30 @@
-class TheCircle extends HTMLElement {}
+import { onDOMChange} from './lib/components'
+
+class TheCircle extends HTMLElement {
+
+  // static observedAttributes = ['radius', 'x', 'y']
+
+  /**
+   * @param {{ radius?: number, x?: number, y?: number }} [attrs={}] 
+   */
+  constructor(attrs = {}) {
+    super()
+    for (const [k, v] of Object.entries(attrs)) {
+      this.setAttribute(k, v)
+    }
+  }
+}
+
 class TheCanvas extends HTMLElement {
 
   constructor() {
     super()
     this.shadow = this.attachShadow({mode: 'open'})
     this.shadow.innerHTML = this.template()
+    this.shadow.addEventListener('click', event => {
+      this.append(new TheCircle({ radius: 30, x: event.offsetX, y: event.offsetY }))
+    })
+    onDOMChange(this, this.render)
   }
 
   template() {
